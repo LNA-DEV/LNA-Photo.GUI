@@ -4,13 +4,13 @@
 ### Flutter ###
 # Flutter/Dart/Pub related
 **/doc/api/
-.dart_tool/
-.flutter-plugins
-.flutter-plugins-dependencies
-.fvm/
-.packages
-.pub-cache/
-.pub/
+./lna_photo/dart_tool/
+./lna_photo/flutter-plugins
+./lna_photo/flutter-plugins-dependencies
+./lna_photo/fvm/
+./lna_photo/packages
+./lna_photo/pub-cache/
+./lna_photo/pub/
 build/
 coverage/
 lib/generated_plugin_registrant.dart
