@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lna_photo/gallery_view/gallery_view.dart';
+import 'Views/gallery_view/gallery_view.dart';
 
 void main() {
   runApp(const LnaPhotoMain());
