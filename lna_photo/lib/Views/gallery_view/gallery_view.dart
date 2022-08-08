@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lna_photo/DataProviders/photo_in_mem_data_provider.dart';
+import 'package:lna_photo/Views/gallery_view/gallery_item.dart';
 
 class GalleryView extends StatefulWidget {
   const GalleryView({Key? key}) : super(key: key);
@@ -15,15 +16,15 @@ class _GalleryViewState extends State<GalleryView> {
   Widget build(BuildContext context) {
     List<String> urls = dataProvider.getPhotoUrls();
 
-    List<Image> images = [];
+    List<GalleryItem> galleryItems = [];
 
-    for (var element in urls) {
-      Image image = Image.network(element);
-      images.add(image);
+    for (String element in urls) {
+      GalleryItem item = GalleryItem(imageSource: element);
+      galleryItems.add(item);
     }
 
     return ListView(
-      children: images,
+      children: galleryItems,
     );
   }
 }
