@@ -11,6 +11,7 @@ env:
   GITHUB_TOKEN: ${{ github.token }}
 
 jobs:
+# Build Android
   BuildApk:
     runs-on: ubuntu-latest
 
@@ -46,6 +47,25 @@ jobs:
           name: aab
           path: ./${{ env.NAME }}/build/app/outputs/bundle/release/app-release.aab
 
+# Build Web
+  BuildWeb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Flutter
+        uses: britannio/action-install-flutter@v1.1
+
+      - run: flutter build web --build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
+        working-directory: ./${{ env.NAME }}
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: web
+          path: ./${{ env.NAME }}/build/app/outputs/bundle/release/
+
+# Release
   ReleaseToGithub:
     needs: BuildApk
     runs-on: ubuntu-latest
