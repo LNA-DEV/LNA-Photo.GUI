@@ -76,7 +76,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.$NAME_release.outputs.upload_url }}
+          upload_url: ${{ steps.lna_photo_release.outputs.upload_url }} # TODO Use Name variable
           asset_path: ./app-release.apk
           asset_name: ${{ env.DISPLAY_NAME }}.apk
           asset_content_type: application/apk
