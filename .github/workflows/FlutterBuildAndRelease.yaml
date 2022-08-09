@@ -2,8 +2,8 @@ name: FlutterBuildAndRelease
 
 on:
   push:
-    branches: [ main ]
-    
+    branches: [main]
+
 env:
   VERSION: 1.1.${{ github.run_number }}
   NAME: lna_photo
@@ -15,44 +15,43 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      
+
       - name: Install Flutter
-        uses: britannio/action-install-flutter@v1.1    
-      
+        uses: britannio/action-install-flutter@v1.1
+
       - run: flutter build apk --build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
         working-directory: ./${{ env.NAME }}
-          
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
           name: apk
           path: ./${{ env.NAME }}/build/app/outputs/flutter-apk/app-release.apk
-          
+
   BuildAab:
     runs-on: ubuntu-latest
-    steps:    
+    steps:
       - uses: actions/checkout@v3
-    
+
       - name: Install Flutter
-        uses: britannio/action-install-flutter@v1.1        
-        
+        uses: britannio/action-install-flutter@v1.1
+
       - run: flutter build appbundle --build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
         working-directory: ./${{ env.NAME }}
-        
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
           name: aab
           path: ./${{ env.NAME }}/build/app/outputs/bundle/release/app-release.aab
-      
-          
+
   ReleaseToGithub:
-    needs: BuildApk    
+    needs: BuildApk
     runs-on: ubuntu-latest
-    
+
     steps:
       - uses: actions/checkout@v3
-    
+
       - name: Download a Build Artifact
         uses: actions/download-artifact@v3.0.0
         with:
@@ -61,7 +60,7 @@ jobs:
 
       - name: release
         uses: actions/create-release@v1
-        id: ${{ env.NAME }}_release 
+        id: ${{ env.NAME }}_release
         with:
           draft: false
           prerelease: false
@@ -70,7 +69,7 @@ jobs:
           body_path: ./Changelog.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
-          
+
       - name: upload linux artifact
         uses: actions/upload-release-asset@v1
         env:
@@ -78,23 +77,22 @@ jobs:
         with:
           upload_url: ${{ steps.${{ env.NAME }}_release.outputs.upload_url }}
           asset_path: ./app-release.apk
-          asset_name: ${{ env.DISPLAY_NAME }}.apk 
+          asset_name: ${{ env.DISPLAY_NAME }}.apk
           asset_content_type: application/apk
-          
-          
+
   # ReleaseToAppCenter:
   #   needs: BuildAab
   #   runs-on: ubuntu-latest
-    
+
   #   steps:
   #     #- uses: actions/checkout@v3
-    
+
   #     - name: Download a Build Artifact
   #       uses: actions/download-artifact@v3.0.0
   #       with:
   #         name: aab
   #         path: .
-          
+
   #     - name: App Center Distribute
   #       uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
   #       with:
@@ -109,4 +107,3 @@ jobs:
   #         # Release notes visible on release page
   #         #releaseNotes: Changelog.md
   #         silent: false
-      
