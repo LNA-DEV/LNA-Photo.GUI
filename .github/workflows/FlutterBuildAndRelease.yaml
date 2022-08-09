@@ -8,8 +8,10 @@ env:
   VERSION: 1.1.${{ github.run_number }}
   NAME: lna_photo
   DISPLAY_NAME: LNA-Photo
+  GITHUB_TOKEN: ${{ github.token }}
 
 jobs:
+# Build Android
   BuildApk:
     runs-on: ubuntu-latest
 
@@ -45,6 +47,32 @@ jobs:
           name: aab
           path: ./${{ env.NAME }}/build/app/outputs/bundle/release/app-release.aab
 
+# Build Web
+  BuildWeb:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Flutter
+        uses: britannio/action-install-flutter@v1.1
+
+      - run: flutter build web #--build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
+        working-directory: ./${{ env.NAME }}
+
+      - run: ls ./${{ env.NAME }}/build/web/
+
+      - name: Archive artifact
+        shell: bash
+        if: runner.os != 'Windows'
+        run: tar -cvf ${{ runner.temp }}/artifact.tar -C ./${{ env.NAME }}/build/web/ .
+
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.0
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+
+# Release
   ReleaseToGithub:
     needs: BuildApk
     runs-on: ubuntu-latest
@@ -60,25 +88,46 @@ jobs:
 
       - name: release
         uses: actions/create-release@v1
-        id: R${{ env.NAME }}_release
+        id: lna_photo_release # TODO Use Name variable
         with:
           draft: false
           prerelease: false
           release_name: ${{ steps.version.outputs.version }}
           tag_name: ${{ env.DISPLAY_NAME }}_V_${{ env.VERSION }}
           body_path: ./.github/Changelog.md
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+        # env:
+        #   GITHUB_TOKEN: ${{ github.token }}
 
       - name: upload linux artifact
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.R${{ env.NAME }}_release.outputs.upload_url }}
+          upload_url: ${{ steps.lna_photo_release.outputs.upload_url }} # TODO Use Name variable
           asset_path: ./app-release.apk
           asset_name: ${{ env.DISPLAY_NAME }}.apk
           asset_content_type: application/apk
+
+  DeployToGithubPages:
+    # Add a dependency to the build job
+    needs: BuildWeb
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    # Specify runner + deployment step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
 
   # ReleaseToAppCenter:
   #   needs: BuildAab
