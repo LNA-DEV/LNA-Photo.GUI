@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lna_photo/DataProviders/photo_api_data_provider.dart';
 import 'package:lna_photo/DataProviders/photo_in_mem_data_provider.dart';
 import 'package:lna_photo/Views/gallery_view/gallery_item.dart';
 
@@ -10,7 +11,7 @@ class GalleryView extends StatefulWidget {
 }
 
 class _GalleryViewState extends State<GalleryView> {
-  PhotoInMemDataProvider dataProvider = PhotoInMemDataProvider();
+  PhotoApiDataProvider dataProvider = PhotoApiDataProvider();
 
   @override
   Widget build(BuildContext context) {
