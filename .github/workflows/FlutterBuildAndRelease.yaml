@@ -61,7 +61,7 @@ jobs:
 
       - name: release
         uses: actions/create-release@v1
-        id: ${{ env.NAME }}_release
+        id: $NAME_release
         with:
           draft: false
           prerelease: false
