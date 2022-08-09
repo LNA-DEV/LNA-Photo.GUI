@@ -45,3 +45,5 @@ app.*.map.json
 ./lna_photo/android/app/debug
 ./lna_photo/android/app/profile
 ./lna_photo/android/app/release
+
+.vscode
