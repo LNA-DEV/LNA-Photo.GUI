@@ -63,7 +63,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.0
         with:
           name: web
-          path: ./${{ env.NAME }}/build/app/outputs/bundle/release/
+          path: ./${{ env.NAME }}/build/web/
 
 # Release
   ReleaseToGithub:
