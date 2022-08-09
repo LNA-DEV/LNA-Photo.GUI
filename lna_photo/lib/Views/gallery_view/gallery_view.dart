@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:lna_photo/DataProviders/photo_api_data_provider.dart';
-import 'package:lna_photo/Models/photo.dart';
 import 'package:lna_photo/Views/gallery_view/gallery_item.dart';
 
 class GalleryView extends StatefulWidget {
