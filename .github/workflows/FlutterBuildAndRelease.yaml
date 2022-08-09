@@ -67,7 +67,7 @@ jobs:
         run: |
           tar \
             --dereference --hard-dereference \
-            --directory ${{ env.NAME }}/build/web/ \
+            --directory ./${{ env.NAME }}/build/web \
             -cvf ${{ runner.temp }}/artifact.tar \
             --exclude=.git \
             --exclude=.github \
