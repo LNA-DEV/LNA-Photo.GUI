@@ -61,7 +61,7 @@ jobs:
 
       - name: release
         uses: actions/create-release@v1
-        id: $NAME_release
+        id: lna_photo_release # TODO Use Name variable
         with:
           draft: false
           prerelease: false
