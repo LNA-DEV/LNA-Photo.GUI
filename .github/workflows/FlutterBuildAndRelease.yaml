@@ -8,6 +8,7 @@ env:
   VERSION: 1.1.${{ github.run_number }}
   NAME: lna_photo
   DISPLAY_NAME: LNA-Photo
+  GITHUB_TOKEN: ${{ github.token }}
 
 jobs:
   BuildApk:
@@ -60,22 +61,22 @@ jobs:
 
       - name: release
         uses: actions/create-release@v1
-        id: R${{ env.NAME }}_release
+        id: ${{ env.NAME }}_release
         with:
           draft: false
           prerelease: false
           release_name: ${{ steps.version.outputs.version }}
           tag_name: ${{ env.DISPLAY_NAME }}_V_${{ env.VERSION }}
           body_path: ./.github/Changelog.md
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
+        # env:
+        #   GITHUB_TOKEN: ${{ github.token }}
 
       - name: upload linux artifact
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.R${{ env.NAME }}_release.outputs.upload_url }}
+          upload_url: ${{ steps.${{ env.NAME }}_release.outputs.upload_url }}
           asset_path: ./app-release.apk
           asset_name: ${{ env.DISPLAY_NAME }}.apk
           asset_content_type: application/apk
