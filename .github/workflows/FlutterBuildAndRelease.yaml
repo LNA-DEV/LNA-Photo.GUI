@@ -118,6 +118,24 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v3.0.0
+        with:
+          name: github-pages
+          path: ./github-pages
+
+      - name: Archive artifact
+        shell: bash
+        if: runner.os != 'Windows'
+        run: |
+          tar \
+            --dereference --hard-dereference \
+            --directory ./github-pages \
+            -cvf ${{ runner.temp }}/artifact.tar \
+            --exclude=.git \
+            --exclude=.github \
+            .
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
