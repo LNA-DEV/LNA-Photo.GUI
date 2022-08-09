@@ -64,7 +64,7 @@ jobs:
       - name: Archive artifact
         shell: bash
         if: runner.os != 'Windows'
-        run: tar -cvf ${{ runner.temp }}/artifact.tar ./${{ env.NAME }}/build/web/ .
+        run: tar -cvf ${{ runner.temp }}/artifact.tar -C ./${{ env.NAME }}/build/web/ .
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
