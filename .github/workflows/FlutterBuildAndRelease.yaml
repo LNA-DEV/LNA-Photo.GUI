@@ -59,6 +59,8 @@ jobs:
       - run: flutter build web #--build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
         working-directory: ./${{ env.NAME }}
 
+      - run: ls ./${{ env.NAME }}/build/web/
+
       - name: Archive artifact
         shell: bash
         if: runner.os != 'Windows'
