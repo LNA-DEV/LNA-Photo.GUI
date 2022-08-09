@@ -12,7 +12,9 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
+[![MIT License][license-shield]][license-url]  
+
+[![wakatime](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce.svg)](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce)  
 
 <!-- PROJECT LOGO -->
 <!-- TODO Change the Link -->
