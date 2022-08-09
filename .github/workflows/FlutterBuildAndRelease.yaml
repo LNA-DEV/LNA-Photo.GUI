@@ -61,6 +61,8 @@ jobs:
 
       - run: ls ./${{ env.NAME }}/build/web/
 
+      - run: touch ${{ runner.temp }}/artifact.tar
+
       - name: Archive artifact
         shell: bash
         if: runner.os != 'Windows'
