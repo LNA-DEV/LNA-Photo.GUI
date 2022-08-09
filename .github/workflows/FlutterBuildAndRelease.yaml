@@ -60,7 +60,7 @@ jobs:
 
       - name: release
         uses: actions/create-release@v1
-        id: ${{ env.NAME }}_release
+        id: R${{ env.NAME }}_release
         with:
           draft: false
           prerelease: false
@@ -75,7 +75,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.${{ env.NAME }}_release.outputs.upload_url }}
+          upload_url: ${{ steps.R${{ env.NAME }}_release.outputs.upload_url }}
           asset_path: ./app-release.apk
           asset_name: ${{ env.DISPLAY_NAME }}.apk
           asset_content_type: application/apk
