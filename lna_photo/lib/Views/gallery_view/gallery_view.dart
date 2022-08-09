@@ -56,7 +56,7 @@ class _GalleryViewState extends State<GalleryView> {
           ];
         }
 
-        return Column(
+        return ListView(
           children: children,
         );
       },
