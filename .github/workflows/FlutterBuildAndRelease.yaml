@@ -6,6 +6,8 @@ on:
     
 env:
   VERSION: 1.1.${{ github.run_number }}
+  NAME: lna_photo
+  DISPLAY_NAME: LNA-Photo
 
 jobs:
   BuildApk:
@@ -18,13 +20,13 @@ jobs:
         uses: britannio/action-install-flutter@v1.1    
       
       - run: flutter build apk --build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
-        working-directory: ./circle #TODO
+        working-directory: ./${{ env.NAME }}
           
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
           name: apk
-          path: ./circle/build/app/outputs/flutter-apk/app-release.apk #TODO
+          path: ./${{ env.NAME }}/build/app/outputs/flutter-apk/app-release.apk
           
   BuildAab:
     runs-on: ubuntu-latest
@@ -35,13 +37,13 @@ jobs:
         uses: britannio/action-install-flutter@v1.1        
         
       - run: flutter build appbundle --build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
-        working-directory: ./circle
+        working-directory: ./${{ env.NAME }}
         
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
           name: aab
-          path: ./circle/build/app/outputs/bundle/release/app-release.aab #TODO
+          path: ./${{ env.NAME }}/build/app/outputs/bundle/release/app-release.aab
       
           
   ReleaseToGithub:
@@ -59,13 +61,13 @@ jobs:
 
       - name: release
         uses: actions/create-release@v1
-        id: circle_release
+        id: ${{ env.NAME }}_release 
         with:
           draft: false
           prerelease: false
           release_name: ${{ steps.version.outputs.version }}
-          tag_name: Circle_V_${{ env.VERSION }}
-          body_path: ./Changelog.md #TODO
+          tag_name: ${{ env.DISPLAY_NAME }}_V_${{ env.VERSION }}
+          body_path: ./Changelog.md
         env:
           GITHUB_TOKEN: ${{ github.token }}
           
@@ -74,9 +76,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
-          upload_url: ${{ steps.circle_release.outputs.upload_url }}
+          upload_url: ${{ steps.${{ env.NAME }}_release.outputs.upload_url }}
           asset_path: ./app-release.apk
-          asset_name: circle.apk
+          asset_name: ${{ env.DISPLAY_NAME }}.apk 
           asset_content_type: application/apk
           
           
