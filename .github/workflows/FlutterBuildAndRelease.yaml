@@ -59,11 +59,22 @@ jobs:
       - run: flutter build web #--build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
         working-directory: ./${{ env.NAME }}
 
+      - name: Archive artifact
+        shell: bash
+        if: runner.os != 'Windows'
+        run: |
+          tar \
+            --dereference --hard-dereference \
+            --directory ./${{ env.NAME }}/build/web/ \
+            -cvf ${{ runner.temp }}/artifact.tar \
+            --exclude=.git \
+            --exclude=.github \
+
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
           name: github-pages
-          path: ./${{ env.NAME }}/build/web/
+          path: ${{ runner.temp }}/artifact.tar
 
 # Release
   ReleaseToGithub:
@@ -118,24 +129,6 @@ jobs:
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - name: Download a Build Artifact
-        uses: actions/download-artifact@v3.0.0
-        with:
-          name: github-pages
-          path: ./github-pages
-
-      - name: Archive artifact
-        shell: bash
-        if: runner.os != 'Windows'
-        run: |
-          tar \
-            --dereference --hard-dereference \
-            --directory ./github-pages \
-            -cvf ${{ runner.temp }}/artifact.tar \
-            --exclude=.git \
-            --exclude=.github \
-            .
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
