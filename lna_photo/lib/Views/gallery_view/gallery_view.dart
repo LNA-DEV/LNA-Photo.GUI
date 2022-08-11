@@ -28,11 +28,7 @@ class _GalleryViewState extends State<GalleryView> {
             galleryItems.add(item);
           }
 
-          children = [
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Column(children: galleryItems),
-            ]),
-          ];
+          children = galleryItems;
         } else if (snapshot.hasError) {
           children = <Widget>[
             const Icon(
