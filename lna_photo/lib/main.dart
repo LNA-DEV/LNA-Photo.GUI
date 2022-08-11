@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Views/gallery_view/gallery_view.dart';
+import 'package:lna_photo/Views/lna_photo_view/lna_photo.dart';
 
 void main() {
   runApp(const LnaPhotoMain());
@@ -12,7 +12,7 @@ class LnaPhotoMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       home: Scaffold(
-        body: GalleryView(),
+        body: LnaPhoto(),
       ),
     );
   }
