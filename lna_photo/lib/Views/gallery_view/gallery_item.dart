@@ -12,7 +12,7 @@ class GalleryItem extends StatefulWidget {
 class _GalleryItemState extends State<GalleryItem> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
       padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(8.0),
