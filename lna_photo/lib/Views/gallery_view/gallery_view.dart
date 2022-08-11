@@ -28,12 +28,47 @@ class _GalleryViewState extends State<GalleryView> {
             galleryItems.add(item);
           }
 
-          children = [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: galleryItems,
-            )
-          ];
+          if (MediaQuery.of(context).size.width > 2000) {
+            List<GalleryItem> Row1 = [];
+            List<GalleryItem> Row2 = [];
+
+            for (var i = 0; i < galleryItems.length; i++) {
+              if (i.isOdd) {
+                Row1.add(galleryItems[i]);
+              } else {
+                Row2.add(galleryItems[i]);
+              }
+            }
+
+            children = [
+              Flex(
+                direction: Axis.horizontal,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    children: Row1,
+                  ),
+                  Column(
+                    children: Row2,
+                  ),
+                ],
+              ),
+            ];
+          } else {
+            children = [
+              Flex(
+                direction: Axis.vertical,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: galleryItems,
+                  ),
+                ],
+              ),
+            ];
+          }
         } else if (snapshot.hasError) {
           children = <Widget>[
             const Icon(
