@@ -12,12 +12,14 @@ class GalleryItem extends StatefulWidget {
 class _GalleryItemState extends State<GalleryItem> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(12, 12, 12, 6),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(8.0),
-        child: Image.network(widget.imageSource),
-      ),
+          borderRadius: BorderRadius.circular(8.0),
+          child: Image.network(
+            widget.imageSource,
+            fit: BoxFit.fitWidth,
+          )),
     );
   }
 }
