@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lna_photo/DataProviders/photo_api_data_provider.dart';
 import 'package:lna_photo/Views/gallery_view/gallery_item.dart';
@@ -22,11 +23,20 @@ class _GalleryViewState extends State<GalleryView> {
         List<Widget> children = [];
 
         children.add(const Padding(
-          padding: EdgeInsets.all(8.0),
+          padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
           child: Center(
             child: Text(
               "LNA-Photo",
-              style: TextStyle(fontSize: 40),
+              style: TextStyle(
+                fontSize: 40,
+                fontWeight: FontWeight.w400,
+                decoration: TextDecoration.underline,
+                decorationStyle: TextDecorationStyle.solid,
+                color: Colors.transparent,
+                decorationColor: Colors.black87,
+                shadows: [Shadow(color: Colors.black, offset: Offset(0, -10))],
+                decorationThickness: 1,
+              ),
             ),
           ),
         ));
