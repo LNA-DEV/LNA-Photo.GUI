@@ -56,9 +56,9 @@ class _GalleryViewState extends State<GalleryView> {
           ];
         }
 
-        if (MediaQuery.of(context).size.width > 2000) {
+        if (MediaQuery.of(context).size.width > 1000) {
           return GridView.count(
-            crossAxisCount: 4,
+            crossAxisCount: 6,
             children: children,
           );
         } else {

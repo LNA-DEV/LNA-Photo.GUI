@@ -18,7 +18,7 @@ class _GalleryItemState extends State<GalleryItem> {
           borderRadius: BorderRadius.circular(8.0),
           child: Image.network(
             widget.imageSource,
-            fit: BoxFit.fitWidth,
+            fit: BoxFit.cover,
           )),
     );
   }
