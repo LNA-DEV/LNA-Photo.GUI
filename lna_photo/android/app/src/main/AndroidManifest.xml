@@ -1,8 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="net.lna-dev.photo">
+    package="net.lna_dev.photo">
    <application
-        android:label="lna_photo"
-        android:name="LNA-Photo"
+        android:label="LNA-Photo"
+        android:name="${applicationName}"
         android:icon="@mipmap/icon">
         <activity
             android:name=".MainActivity"

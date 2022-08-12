@@ -1,4 +1,4 @@
-package com.example.lna_photo
+package net.lna_dev.photo
 
 import io.flutter.embedding.android.FlutterActivity
 
