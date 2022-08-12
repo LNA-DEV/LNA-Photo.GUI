@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lna_photo/DataProviders/photo_api_data_provider.dart';
 import 'package:lna_photo/Views/gallery_view/gallery_item.dart';
+import 'package:lna_photo/Views/heading_view/heading_view.dart';
 
 class GalleryView extends StatefulWidget {
   const GalleryView({Key? key}) : super(key: key);
@@ -19,55 +21,14 @@ class _GalleryViewState extends State<GalleryView> {
     return FutureBuilder<List<String>>(
       future: urls,
       builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
-        List<Widget> children;
-        if (snapshot.hasData) {
-          List<GalleryItem> galleryItems = [];
+        List<Widget> children = [];
 
+        children.add(const Heading(text: "LNA-Photo",));
+
+        if (snapshot.hasData) {
           for (String element in snapshot.requireData) {
             GalleryItem item = GalleryItem(imageSource: element);
-            galleryItems.add(item);
-          }
-
-          if (MediaQuery.of(context).size.width > 2000) {
-            List<GalleryItem> Row1 = [];
-            List<GalleryItem> Row2 = [];
-
-            for (var i = 0; i < galleryItems.length; i++) {
-              if (i.isOdd) {
-                Row1.add(galleryItems[i]);
-              } else {
-                Row2.add(galleryItems[i]);
-              }
-            }
-
-            children = [
-              Flex(
-                direction: Axis.horizontal,
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Column(
-                    children: Row1,
-                  ),
-                  Column(
-                    children: Row2,
-                  ),
-                ],
-              ),
-            ];
-          } else {
-            children = [
-              Flex(
-                direction: Axis.vertical,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: galleryItems,
-                  ),
-                ],
-              ),
-            ];
+            children.add(item);
           }
         } else if (snapshot.hasError) {
           children = <Widget>[
@@ -95,9 +56,16 @@ class _GalleryViewState extends State<GalleryView> {
           ];
         }
 
-        return ListView(
-          children: children,
-        );
+        if (MediaQuery.of(context).size.width > 1000) {
+          return GridView.count(
+            crossAxisCount: 6,
+            children: children,
+          );
+        } else {
+          return ListView(
+            children: children,
+          );
+        }
       },
     );
   }
