@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.lna_photo">
+    package="net.lna-dev.photo">
    <application
         android:label="lna_photo"
-        android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:name="LNA-Photo"
+        android:icon="@mipmap/Pingüino-Square">
         <activity
             android:name=".MainActivity"
             android:exported="true"
