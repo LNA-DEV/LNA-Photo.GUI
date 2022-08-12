@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lna_photo/DataProviders/photo_api_data_provider.dart';
 import 'package:lna_photo/Views/gallery_view/gallery_item.dart';
+import 'package:lna_photo/Views/heading_view/heading_view.dart';
 
 class GalleryView extends StatefulWidget {
   const GalleryView({Key? key}) : super(key: key);
@@ -22,24 +23,7 @@ class _GalleryViewState extends State<GalleryView> {
       builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
         List<Widget> children = [];
 
-        children.add(const Padding(
-          padding: EdgeInsets.fromLTRB(8, 16, 8, 8),
-          child: Center(
-            child: Text(
-              "LNA-Photo",
-              style: TextStyle(
-                fontSize: 40,
-                fontWeight: FontWeight.w400,
-                decoration: TextDecoration.underline,
-                decorationStyle: TextDecorationStyle.solid,
-                color: Colors.transparent,
-                decorationColor: Colors.black87,
-                shadows: [Shadow(color: Colors.black, offset: Offset(0, -10))],
-                decorationThickness: 1,
-              ),
-            ),
-          ),
-        ));
+        children.add(const Heading(text: "LNA-Photo",));
 
         if (snapshot.hasData) {
           for (String element in snapshot.requireData) {
