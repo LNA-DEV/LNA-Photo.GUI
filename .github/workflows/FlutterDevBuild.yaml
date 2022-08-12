@@ -17,11 +17,11 @@ jobs:
       - name: Install Flutter
         uses: britannio/action-install-flutter@v1.1
 
-      - run: flutter build apk --build-name ${{ env.VERSION }} --build-number ${{ github.run_number }}
+      - run: flutter build apk --build-name ${{ env.VERSION }} --build-number ${{ github.run_number }} --debug
         working-directory: ./lna_photo
 
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v3.1.0
         with:
           name: apk
-          path: ./lna_photo/build/app/outputs/flutter-apk/app-release.apk
+          path: ./lna_photo/build/app/outputs/flutter-apk/app-debug.apk
