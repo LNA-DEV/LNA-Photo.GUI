@@ -3,7 +3,7 @@
    <application
         android:label="lna_photo"
         android:name="LNA-Photo"
-        android:icon="@mipmap/Pingüino-Square">
+        android:icon="@mipmap/pingüino-square">
         <activity
             android:name=".MainActivity"
             android:exported="true"
