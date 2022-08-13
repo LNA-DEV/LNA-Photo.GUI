@@ -47,3 +47,7 @@ app.*.map.json
 ./lna_photo/android/app/release
 
 .vscode
+
+# Signing
+*key.properties
+*.jks
