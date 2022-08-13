@@ -1,7 +1,7 @@
 # ⚠️ Work in progress ⚠️
 
 
-
+[![FlutterBuildAndRelease](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml/badge.svg?branch=main)](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml)
 
 
 <!-- VERSION: LNA-DEV-README-TEMPLATE V1.2 -->
