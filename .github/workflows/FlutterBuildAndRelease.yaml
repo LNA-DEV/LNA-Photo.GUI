@@ -1,6 +1,8 @@
 name: FlutterBuildAndRelease
 
 on:
+  workflow_dispatch:
+  
   push:
     branches: [main]
 
@@ -169,3 +171,4 @@ jobs:
           packageName: net.lna_dev.photo
           releaseFiles: ./app-release.aab
           track: production
+          status: completed
