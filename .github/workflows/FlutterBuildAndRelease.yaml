@@ -161,3 +161,11 @@ jobs:
           path: .
 
       - run: ls .
+
+        # Docs: https://github.com/marketplace/actions/upload-android-release-to-play-store
+      - uses: r0adkll/upload-google-play@v1
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT_JSON }}
+          packageName: net.lna_dev.photo
+          releaseFiles: ./app-release.aab
+          track: production
