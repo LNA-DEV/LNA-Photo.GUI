@@ -11,7 +11,7 @@ env:
   GITHUB_TOKEN: ${{ github.token }}
 
 jobs:
-# Build Android
+  # Build Android
   BuildApk:
     runs-on: ubuntu-latest
 
@@ -47,7 +47,7 @@ jobs:
           name: aab
           path: ./${{ env.NAME }}/build/app/outputs/bundle/release/app-release.aab
 
-# Build Web
+  # Build Web
   BuildWeb:
     runs-on: ubuntu-latest
     steps:
@@ -56,7 +56,7 @@ jobs:
       - name: Install Flutter
         uses: britannio/action-install-flutter@v1.1
 
-      - run: flutter build web #--build-name=${{ env.VERSION }} --build-number=${{ github.run_number }}
+      - run: flutter build web
         working-directory: ./${{ env.NAME }}
 
       - run: ls ./${{ env.NAME }}/build/web/
@@ -72,7 +72,7 @@ jobs:
           name: github-pages
           path: ${{ runner.temp }}/artifact.tar
 
-# Release
+  # Release
   ReleaseToGithub:
     needs: BuildApk
     runs-on: ubuntu-latest
@@ -95,8 +95,6 @@ jobs:
           release_name: ${{ steps.version.outputs.version }}
           tag_name: ${{ env.DISPLAY_NAME }}_V_${{ env.VERSION }}
           body_path: ./.github/Changelog.md
-        # env:
-        #   GITHUB_TOKEN: ${{ github.token }}
 
       - name: upload linux artifact
         uses: actions/upload-release-asset@v1
@@ -114,8 +112,8 @@ jobs:
 
     # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      pages: write # to deploy to Pages
+      id-token: write # to verify the deployment originates from an appropriate source
 
     # Deploy to the github-pages environment
     environment:
@@ -128,31 +126,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-
-  # ReleaseToAppCenter:
-  #   needs: BuildAab
-  #   runs-on: ubuntu-latest
-
-  #   steps:
-  #     #- uses: actions/checkout@v3
-
-  #     - name: Download a Build Artifact
-  #       uses: actions/download-artifact@v3.0.0
-  #       with:
-  #         name: aab
-  #         path: .
-
-  #     - name: App Center Distribute
-  #       uses: devussy/AppCenter-Distribute-Github-Action@v1.0.2
-  #       with:
-  #         # App name followed by username e.g. devussy/Sample-App
-  #         app: lna-dev/Circle
-  #         # Upload token - you can get one from appcenter.ms/settings
-  #         token: ${{ secrets.APP_CENTER_TOKEN }}
-  #         # Distribution group
-  #         group: Collaborators
-  #         # Artifact to upload (.apk or .ipa)
-  #         file: ./app-release.aab
-  #         # Release notes visible on release page
-  #         #releaseNotes: Changelog.md
-  #         silent: false
