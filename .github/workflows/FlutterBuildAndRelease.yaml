@@ -47,6 +47,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Create the Keystore
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          echo $KEYSTORE_BASE64 | base64 -d > ./${{ env.NAME }}/android/keystore.jks
+
+      - name: Create the Key
+        env:
+          KEY_BASE64: ${{ secrets.KEY_BASE64 }}
+        run: |
+          echo $KEY_BASE64 | base64 -d > ./${{ env.NAME }}/android/key.properties
+
       - name: Install Flutter
         uses: britannio/action-install-flutter@v1.1
 
