@@ -16,27 +16,27 @@ class _ImageDetailViewState extends State<ImageDetailView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(
+      body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Column(
-            children: const [
-              Align(
-                alignment: Alignment.topLeft,
-                child: BackButton(),
-              ),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ImageDetail(
-                photo: widget.photo,
-              ),
-            ],
-          ),
-        ],
-      ),
+        Column(
+          mainAxisSize: MainAxisSize.min,
+          children: const [
+            Align(
+              alignment: Alignment.topLeft,
+              child: BackButton(),
+            ),
+          ],
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ImageDetail(
+              photo: widget.photo,
+            ),
+          ],
+        ),
+      ]),
     );
   }
 }
