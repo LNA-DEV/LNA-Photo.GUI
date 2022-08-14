@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../Models/photo.dart';
 import '../image_detail/image_detail.dart';
 
 class GalleryItem extends StatefulWidget {
-  const GalleryItem({Key? key, required this.imageSource}) : super(key: key);
+  const GalleryItem({Key? key, required this.photo}) : super(key: key);
 
-  final String imageSource;
+  final Photo photo;
 
   @override
   State<GalleryItem> createState() => _GalleryItemState();
@@ -18,7 +19,7 @@ class _GalleryItemState extends State<GalleryItem> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => ImageDetail(imageSource: widget.imageSource),
+            builder: (context) => ImageDetail(photo: widget.photo),
           ),
         );
       },
@@ -27,9 +28,9 @@ class _GalleryItemState extends State<GalleryItem> {
         child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Hero(
-              tag: "image-detail-${widget.imageSource}",
+              tag: "image-detail-${widget.photo.name}",
               child: Image.network(
-                widget.imageSource,
+                widget.photo.url,
                 fit: BoxFit.cover,
               ),
             )),

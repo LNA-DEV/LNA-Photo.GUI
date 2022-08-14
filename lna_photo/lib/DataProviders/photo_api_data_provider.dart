@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:lna_photo/Models/photo.dart';
 
 class PhotoApiDataProvider {
-  Future<List<String>> getPhotoUrls() async {
+  Future<List<Photo>> getPhotoUrls() async {
     List<String> photoUrls = [];
 
     var client = http.Client();
@@ -24,10 +24,6 @@ class PhotoApiDataProvider {
       result.add(Photo.fromJson(element));
     }
 
-    for (var element in result) {
-      photoUrls.add(element.url);
-    }
-
-    return photoUrls;
+    return result;
   }
 }
