@@ -20,6 +20,11 @@ class _ImageDetailState extends State<ImageDetail> {
           widget.photo.url.replaceAll("-Prev.webp", ".JPG"),
           filterQuality: FilterQuality.none,
           fit: BoxFit.contain,
+          loadingBuilder: ((context, child, loadingProgress) {
+            if (loadingProgress == null) return child;
+
+            return const CircularProgressIndicator.adaptive();
+          }),
         ),
       ),
     );
