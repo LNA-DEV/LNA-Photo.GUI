@@ -1,9 +1,3 @@
-# ⚠️ Work in progress ⚠️
-
-
-[![FlutterBuildAndRelease](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml/badge.svg?branch=main)](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml)
-
-
 <!-- VERSION: LNA-DEV-README-TEMPLATE V1.2 -->
 
 <div id="top"></div>
@@ -15,18 +9,16 @@
 [![MIT License][license-shield]][license-url]  
 
 [![wakatime](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce.svg)](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce)  
+[![FlutterBuildAndRelease](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml/badge.svg?branch=main)](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml)  
 
 <!-- PROJECT LOGO -->
-<!-- TODO Change the Link -->
-<!-- TODO Change the image -->
 <br />
 <div align="center">
-  <a href="https://github.com/lna-dev/README-TEMPLATE">
+  <a href="https://github.com/lna-dev/LNA-Photo">
     <img src="https://lna-dev.com/Assets/Metadata/Pingüino-Square.png" alt="Logo" width="80" height="80">
   </a>
 
-<!-- TODO Change the project name -->
-<h3 align="center">README-Template</h3>
+<h3 align="center">LNA-Photo</h3>
 
 <!-- TODO Change the description -->
 In this repository I have created a README-Template based on Best-README-Template
