@@ -17,7 +17,7 @@ class _ImageDetailState extends State<ImageDetail> {
       child: Hero(
         tag: "image-detail-${widget.photo.name}",
         child: Image.network(
-          widget.photo.url, //.replaceAll("-Prev.webp", ".JPG"),
+          widget.photo.url.replaceAll("-Prev.webp", ".JPG"),
           fit: BoxFit.scaleDown,
         ),
       ),
