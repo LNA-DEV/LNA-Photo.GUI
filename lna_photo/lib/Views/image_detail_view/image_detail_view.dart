@@ -19,6 +19,12 @@ class _ImageDetailViewState extends State<ImageDetailView> {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 1, 93, 105),
         title: Text(widget.photo.name),
+        actions: [
+          IconButton(
+            onPressed: () => {}, // TODO
+            icon: const Icon(Icons.info),
+          )
+        ],
       ),
       body: ImageDetail(
         photo: widget.photo,
