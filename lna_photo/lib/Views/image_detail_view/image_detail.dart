@@ -13,11 +13,13 @@ class ImageDetail extends StatefulWidget {
 class _ImageDetailState extends State<ImageDetail> {
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: "image-detail-${widget.photo.name}",
-      child: Image.network(
-        widget.photo.url, //.replaceAll("-Prev.webp", ".JPG"),
-        fit: BoxFit.scaleDown,
+    return Center(
+      child: Hero(
+        tag: "image-detail-${widget.photo.name}",
+        child: Image.network(
+          widget.photo.url, //.replaceAll("-Prev.webp", ".JPG"),
+          fit: BoxFit.scaleDown,
+        ),
       ),
     );
   }
