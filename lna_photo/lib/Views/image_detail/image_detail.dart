@@ -16,6 +16,7 @@ class _ImageDetailState extends State<ImageDetail> {
       body: Center(
         child: Hero(
           tag: "image-detail-${widget.imageSource}",
+          // TODO child: Image.network(widget.imageSource.replaceAll("-Prev.webp", ".JPG")),
           child: Image.network(widget.imageSource),
         ),
       ),
