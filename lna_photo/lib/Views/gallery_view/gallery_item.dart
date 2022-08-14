@@ -27,7 +27,7 @@ class _GalleryItemState extends State<GalleryItem> {
         child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Hero(
-              tag: "image-detail-" + widget.imageSource,
+              tag: "image-detail-${widget.imageSource}",
               child: Image.network(
                 widget.imageSource,
                 fit: BoxFit.cover,

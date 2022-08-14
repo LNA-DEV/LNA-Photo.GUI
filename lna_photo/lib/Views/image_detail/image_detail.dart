@@ -15,7 +15,7 @@ class _ImageDetailState extends State<ImageDetail> {
     return Scaffold(
       body: Center(
         child: Hero(
-          tag: "image-detail-" + widget.imageSource,
+          tag: "image-detail-${widget.imageSource}",
           child: Image.network(widget.imageSource),
         ),
       ),
