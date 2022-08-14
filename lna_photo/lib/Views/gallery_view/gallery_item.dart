@@ -15,7 +15,7 @@ class _GalleryItemState extends State<GalleryItem> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onDoubleTap: () {
+      onTap: () {
         Navigator.push(
           context,
           MaterialPageRoute(
