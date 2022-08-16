@@ -1,9 +1,3 @@
-# ⚠️ Work in progress ⚠️
-
-
-[![FlutterBuildAndRelease](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml/badge.svg?branch=main)](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml)
-
-
 <!-- VERSION: LNA-DEV-README-TEMPLATE V1.2 -->
 
 <div id="top"></div>
@@ -15,49 +9,45 @@
 [![MIT License][license-shield]][license-url]  
 
 [![wakatime](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce.svg)](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce)  
+[![FlutterBuildAndRelease](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml/badge.svg?branch=main)](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml)  
 
 <!-- PROJECT LOGO -->
-<!-- TODO Change the Link -->
-<!-- TODO Change the image -->
 <br />
 <div align="center">
-  <a href="https://github.com/lna-dev/README-TEMPLATE">
+  <a href="https://github.com/lna-dev/LNA-Photo">
     <img src="https://lna-dev.com/Assets/Metadata/Pingüino-Square.png" alt="Logo" width="80" height="80">
   </a>
 
-<!-- TODO Change the project name -->
-<h3 align="center">README-Template</h3>
+<h3 align="center">LNA-Photo</h3>
 
-<!-- TODO Change the description -->
-In this repository I have created a README-Template based on Best-README-Template
-
+In this repository / flutter-project I showcase my photography 📷
 <p align="center">
 
 <br />
 
-<!-- TODO Change the Link -->
-<a href="https://lna-dev.com"><strong>Explore the Project »</strong></a>
+<a href="https://photo.lna-dev.net"><strong>Explore the Project »</strong></a>
 <br />
 <br />
-<a href="https://github.com/lna-dev/README-TEMPLATE/issues">Report Bug</a>
+<a href="https://github.com/lna-dev/LNA-Photo/issues">Report Bug</a>
 ·
-<a href="https://github.com/lna-dev/README-TEMPLATE/issues">Request Feature</a>
+<a href="https://github.com/lna-dev/LNA-Photo/issues">Request Feature</a>
   </p>
 </div>
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project 🗺️
 
-<!-- TODO Tell the world about your project -->
-Here you can describe your project a little bit more. Explain the world your thoughts and what your project does. Have fun and build something.
-
+This is the place where I showcase my photography. I make my photos with the Panasonic G91 and my phone the OnePlus 9 Pro but I am also using a DJI Air 2S to take some of them out of the air. Some older photos are taken with the Google Pixel 2XL. Go and take a look.
 <p align="right">(<a href="#top">back to top ☝</a>)</p>
 
 ## Build With 🏗️
 
-<!-- TODO Go to https://github.com/Ileriayo/markdown-badges and search for a fitting batch🙃 -->
+<!-- Go to https://github.com/Ileriayo/markdown-badges and search for a fitting batch🙃 -->
 
-![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)  
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)  
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)  
+![Dart](https://img.shields.io/badge/dart-%230175C2.svg?style=for-the-badge&logo=dart&logoColor=white)  
+![Flutter](https://img.shields.io/badge/Flutter-%2302569B.svg?style=for-the-badge&logo=Flutter&logoColor=white)  
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)  
 
 <p align="right">(<a href="#top">back to top ☝</a>)</p>
@@ -65,13 +55,11 @@ Here you can describe your project a little bit more. Explain the world your tho
 <!-- CONTRIBUTING -->
 ## Contributing ✨
 
-<!-- TODO Customize the contributing text -->
 If you have any ideas or want to contribute yourself... go for it. I really appreciate it if some of you have cool ideas🚀
 
 <p align="right">(<a href="#top">back to top ☝</a>)</p>
 
 <!-- LICENSE -->
-<!-- TODO Add the License description -->
 ## License 📝
 
 The code is distributed under the MIT License. See `LICENSE` for more information.
@@ -79,7 +67,6 @@ The code is distributed under the MIT License. See `LICENSE` for more informatio
 <p align="right">(<a href="#top">back to top ☝</a>)</p>
 
 <!-- ACKNOWLEDGMENTS -->
-<!-- TODO Add your acknowledgments -->
 ## Acknowledgments 🙏
 
 - [LNA-DEV README-Template](https://github.com/lna-dev/README-Template)
@@ -89,15 +76,13 @@ The code is distributed under the MIT License. See `LICENSE` for more informatio
 <p align="right">(<a href="#top">back to top ☝</a>)</p>
 
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- TODO Update your user name -->
-<!-- TODO Update your project name -->
-[contributors-shield]: https://img.shields.io/github/contributors/lna-dev/README-TEMPLATE.svg?style=for-the-badge
-[contributors-url]: https://github.com/lna-dev/README-TEMPLATE/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/lna-dev/README-TEMPLATE.svg?style=for-the-badge
-[forks-url]: https://github.com/lna-dev/README-TEMPLATE/network/members
-[stars-shield]: https://img.shields.io/github/stars/lna-dev/README-TEMPLATE.svg?style=for-the-badge
-[stars-url]: https://github.com/lna-dev/README-TEMPLATE/stargazers
-[issues-shield]: https://img.shields.io/github/issues/lna-dev/README-TEMPLATE.svg?style=for-the-badge
-[issues-url]: https://github.com/lna-dev/README-TEMPLATE/issues
-[license-shield]: https://img.shields.io/github/license/lna-dev/README-TEMPLATE.svg?style=for-the-badge
-[license-url]: https://github.com/lna-dev/README-TEMPLATE/blob/master/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/lna-dev/LNA-Photo.svg?style=for-the-badge
+[contributors-url]: https://github.com/lna-dev/LNA-Photo/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/lna-dev/LNA-Photo.svg?style=for-the-badge
+[forks-url]: https://github.com/lna-dev/LNA-Photo/network/members
+[stars-shield]: https://img.shields.io/github/stars/lna-dev/LNA-Photo.svg?style=for-the-badge
+[stars-url]: https://github.com/lna-dev/LNA-Photo/stargazers
+[issues-shield]: https://img.shields.io/github/issues/lna-dev/LNA-Photo.svg?style=for-the-badge
+[issues-url]: https://github.com/lna-dev/LNA-Photo/issues
+[license-shield]: https://img.shields.io/github/license/lna-dev/LNA-Photo.svg?style=for-the-badge
+[license-url]: https://github.com/lna-dev/LNA-Photo/blob/master/LICENSE

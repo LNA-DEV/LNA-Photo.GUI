@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../Models/photo.dart';
+import '../image_detail_view/image_detail_view.dart';
 
 class GalleryItem extends StatefulWidget {
-  const GalleryItem({Key? key, required this.imageSource}) : super(key: key);
+  const GalleryItem({Key? key, required this.photo}) : super(key: key);
 
-  final String imageSource;
+  final Photo photo;
 
   @override
   State<GalleryItem> createState() => _GalleryItemState();
@@ -12,14 +14,27 @@ class GalleryItem extends StatefulWidget {
 class _GalleryItemState extends State<GalleryItem> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),
-          child: Image.network(
-            widget.imageSource,
-            fit: BoxFit.cover,
-          )),
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ImageDetailView(photo: widget.photo),
+          ),
+        );
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ClipRRect(
+            borderRadius: BorderRadius.circular(8.0),
+            child: Hero(
+              tag: "image-detail-${widget.photo.name}",
+              child: Image.network(
+                widget.photo.url,
+                fit: BoxFit.cover,
+              ),
+            )),
+      ),
     );
   }
 }

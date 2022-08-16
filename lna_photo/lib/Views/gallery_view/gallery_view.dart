@@ -3,6 +3,8 @@ import 'package:lna_photo/DataProviders/photo_api_data_provider.dart';
 import 'package:lna_photo/Views/gallery_view/gallery_item.dart';
 import 'package:lna_photo/Views/heading_view/heading_view.dart';
 
+import '../../Models/photo.dart';
+
 class GalleryView extends StatefulWidget {
   const GalleryView({Key? key}) : super(key: key);
 
@@ -15,18 +17,22 @@ class _GalleryViewState extends State<GalleryView> {
 
   @override
   Widget build(BuildContext context) {
-    Future<List<String>> urls = dataProvider.getPhotoUrls();
+    Future<List<Photo>> photos = dataProvider.getPhotoUrls();
 
-    return FutureBuilder<List<String>>(
-      future: urls,
-      builder: (BuildContext context, AsyncSnapshot<List<String>> snapshot) {
+    return FutureBuilder<List<Photo>>(
+      future: photos,
+      builder: (BuildContext context, AsyncSnapshot<List<Photo>> snapshot) {
         List<Widget> children = [];
 
-        children.add(const Heading(text: "LNA-Photo",));
+        children.add(const Heading(
+          text: "LNA-Photo",
+        ));
 
         if (snapshot.hasData) {
-          for (String element in snapshot.requireData) {
-            GalleryItem item = GalleryItem(imageSource: element);
+          for (var element in snapshot.requireData) {
+            GalleryItem item = GalleryItem(
+              photo: element,
+            );
             children.add(item);
           }
         } else if (snapshot.hasError) {
