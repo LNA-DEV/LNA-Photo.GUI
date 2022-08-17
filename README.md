@@ -37,7 +37,7 @@ In this repository / flutter-project I showcase my photography 📷
 <!-- ABOUT THE PROJECT -->
 ## About The Project 🗺️
 
-This is the place where I showcase my photography. I make my photos with the Panasonic G91 and my phone the OnePlus 9 Pro but I am also using a DJI Air 2S to take some of them out of the air. Some older photos are taken with the Google Pixel 2XL. Go and take a look.
+This project is written with dart and the flutter framework. It gets deployed as WebApp and MobileApp for android. In those apps i showcase my photography. I make my photos with the Panasonic G91 and my phone the OnePlus 9 Pro but I am also using a DJI Air 2S to take some of them out of the air. Some older photos are taken with the Google Pixel 2XL. I hope you enjoy the images.
 <p align="right">(<a href="#top">back to top ☝</a>)</p>
 
 ## Build With 🏗️
