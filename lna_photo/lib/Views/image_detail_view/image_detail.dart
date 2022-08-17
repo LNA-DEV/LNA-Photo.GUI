@@ -16,15 +16,19 @@ class _ImageDetailState extends State<ImageDetail> {
     return Center(
       child: Hero(
         tag: "image-detail-${widget.photo.name}",
-        child: Image.network(
-          widget.photo.url.replaceAll("-Prev.webp", ".JPG"),
-          filterQuality: FilterQuality.none,
-          fit: BoxFit.contain,
-          loadingBuilder: ((context, child, loadingProgress) {
-            if (loadingProgress == null) return child;
+        child: InteractiveViewer(
+          maxScale: 10.0,
+          clipBehavior: Clip.none,
+          child: Image.network(
+            widget.photo.url.replaceAll("-Prev.webp", ".JPG"),
+            filterQuality: FilterQuality.none,
+            fit: BoxFit.contain,
+            loadingBuilder: ((context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
 
-            return const CircularProgressIndicator.adaptive();
-          }),
+              return const CircularProgressIndicator.adaptive();
+            }),
+          ),
         ),
       ),
     );
