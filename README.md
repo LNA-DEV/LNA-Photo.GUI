@@ -6,10 +6,9 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]  
-
-[![wakatime](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce.svg)](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce)  
-[![FlutterBuildAndRelease](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml/badge.svg?branch=main)](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml)  
+[![MIT License][license-shield]][license-url]
+[![wakatime](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce.svg?style=for-the-badge&logo=appveyor)](https://wakatime.com/badge/user/d37401d6-1566-41ea-b7ab-8cc7d2c9f55b/project/15ede495-edd8-446e-a364-6d33d75d9bce)
+[![FlutterBuildAndRelease](https://img.shields.io/github/workflow/status/LNA-DEV/LNA-Photo/FlutterBuildAndRelease?style=for-the-badge)](https://github.com/LNA-DEV/LNA-Photo/actions/workflows/FlutterBuildAndRelease.yaml)  
 
 <!-- PROJECT LOGO -->
 <br />
