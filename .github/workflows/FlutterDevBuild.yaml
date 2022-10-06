@@ -37,6 +37,8 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - run: ls
+
       - name: Build the Docker image
         run: docker build . --file ./Dockerfile --tag lnadev/${{ env.CONTAINER-NAME }}:dev
 
