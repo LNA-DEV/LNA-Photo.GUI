@@ -11,6 +11,7 @@ env:
   NAME: lna_photo
   DISPLAY_NAME: LNA-Photo
   GITHUB_TOKEN: ${{ github.token }}
+  CONTAINER-NAME: lna_photo
 
 jobs:
   # Build Android
