@@ -45,7 +45,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - run: ls ./${{ env.CONTAINER-NAME }}
+      - run: ls ./${{ env.CONTAINER-NAME }}/build/web/
 
       - name: Build the Docker image
         run: docker build . --file ./Dockerfile --tag lnadev/${{ env.CONTAINER-NAME }}:dev
