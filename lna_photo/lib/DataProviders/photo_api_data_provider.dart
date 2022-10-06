@@ -21,7 +21,9 @@ class PhotoApiDataProvider {
     List<dynamic> map = json.decode(response.body.toString());
 
     for (var element in map) {
-      result.add(Photo.fromJson(element));
+      if (element['isDisabled'] == false) {
+        result.add(Photo.fromJson(element));
+      }
     }
 
     return result;
