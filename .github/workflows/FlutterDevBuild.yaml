@@ -1,11 +1,14 @@
 name: FlutterDevBuild
 
 on:
+  workflow_dispatch:
+
   push:
     branches: [dev]
 
 env:
   VERSION: 1.1.${{ github.run_number }}
+  CONTAINER-NAME: lna_photo
 
 jobs:
   BuildApk:
@@ -25,3 +28,28 @@ jobs:
         with:
           name: apk
           path: ./lna_photo/build/app/outputs/flutter-apk/app-debug.apk
+
+  BuildWeb:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Flutter
+        uses: britannio/action-install-flutter@v1.1
+
+      - run: flutter build web
+        working-directory: ./${{ env.CONTAINER-NAME }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build the Docker image
+        run: docker build . --file ${GITHUB_WORKSPACE}/Dockerfile --tag lnadev/${{ env.CONTAINER-NAME }}:dev
+        working-directory: ./${{ env.CONTAINER-NAME }}
+
+      - name: Push the image to dockerhub
+        run: docker push lnadev/${{ env.CONTAINER-NAME }}:dev

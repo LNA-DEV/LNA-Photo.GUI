@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lna-photo-gui-deployment
+spec:
+  selector:
+    matchLabels:
+      app: lna-photo-gui
+  template:
+    metadata:
+      labels:
+        app: lna-photo-gui
+    spec:
+      containers:
+        - name: lna-photo-gui
+          image: lnadev/lna_photo:40
+          imagePullPolicy: Always
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
+              name: port-http
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lna-photo-gui-service
+spec:
+  selector:
+    app: lna-photo-gui
+  ports:
+    - port: 80
+      targetPort: port-http
+      name: http
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lna-photo-gui-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  tls:
+  - hosts:
+    - 'photo.lna-dev.net'
+    secretName: lna-photo-gui-cert
+  rules:
+    - host: photo.lna-dev.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lna-photo-gui-service
+                port:
+                  number: 80
+
+---
+# Needed because of HTTP to HTTPS redirecting
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: lna-photo-gui-ingress-http
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+    traefik.ingress.kubernetes.io/router.middlewares: default-redirectscheme@kubernetescrd
+spec:
+  rules:
+    - host: photo.lna-dev.net
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: lna-photo-gui-service
+                port:
+                  number: 80
+
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: redirectscheme
+spec:
+  redirectScheme:
+    scheme: https
+    permanent: true

@@ -74,8 +74,9 @@ jobs:
           path: ./${{ env.NAME }}/build/app/outputs/bundle/release/app-release.aab
 
   # Build Web
-  BuildWeb:
+  BuildWebLatest:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
 
@@ -83,20 +84,45 @@ jobs:
         uses: britannio/action-install-flutter@v1.1
 
       - run: flutter build web
-        working-directory: ./${{ env.NAME }}
+        working-directory: ./${{ env.CONTAINER-NAME }}
 
-      - run: ls ./${{ env.NAME }}/build/web/
-
-      - name: Archive artifact
-        shell: bash
-        if: runner.os != 'Windows'
-        run: tar -cvf ${{ runner.temp }}/artifact.tar -C ./${{ env.NAME }}/build/web/ .
-
-      - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v3.1.0
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
         with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build the Docker image
+        run: docker build . --file ${GITHUB_WORKSPACE}/Dockerfile --tag lnadev/${{ env.CONTAINER-NAME }}:latest
+        working-directory: ./${{ env.CONTAINER-NAME }}
+
+      - name: Push the image to dockerhub
+        run: docker push lnadev/${{ env.CONTAINER-NAME }}:latest
+
+  BuildWebVersion:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install Flutter
+        uses: britannio/action-install-flutter@v1.1
+
+      - run: flutter build web
+        working-directory: ./${{ env.CONTAINER-NAME }}
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build the Docker image
+        run: docker build . --file ${GITHUB_WORKSPACE}/Dockerfile --tag lnadev/${{ env.CONTAINER-NAME }}:${{ github.run_number }}
+        working-directory: ./${{ env.CONTAINER-NAME }}
+
+      - name: Push the image to dockerhub
+        run: docker push lnadev/${{ env.CONTAINER-NAME }}:${{ github.run_number }}
 
   # Release
   ReleaseToGithub:
@@ -132,24 +158,24 @@ jobs:
           asset_name: ${{ env.DISPLAY_NAME }}.apk
           asset_content_type: application/apk
 
-  DeployToGithubPages:
-    needs: BuildWeb
+  DeployToKubernetes:
+    needs: BuildWebVersion
 
-    permissions:
-      pages: write # to deploy to Pages
-      id-token: write # to verify the deployment originates from an appropriate source
-
-    # Deploy to the github-pages environment
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      # Download Secure-File
+      - name: base64-to-file
+        id: write_file
+        uses: timheuer/base64-to-file@v1.1
+        with:
+          fileName: "custom-config"
+          encodedString: ${{ secrets.KUBECTL_CONFIG }}
+
+      # Checkout the repository
+      - uses: actions/checkout@v3
+
+      # Deploy Kubernetes YAML
+      - run: kubectl apply -f ./Kubernetes/LNA-Photo.yaml --kubeconfig ${{ steps.write_file.outputs.filePath }}
 
   DeployToGooglePlay:
     needs: BuildAab
