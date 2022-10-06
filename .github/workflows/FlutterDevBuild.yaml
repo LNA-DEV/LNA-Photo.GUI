@@ -6,7 +6,7 @@ on:
 
 env:
   VERSION: 1.1.${{ github.run_number }}
-  CONTAINER-NAME: lna-photo
+  CONTAINER-NAME: lna_photo
 
 jobs:
   BuildApk:
@@ -37,7 +37,7 @@ jobs:
         uses: britannio/action-install-flutter@v1.1
 
       - run: flutter build web
-        working-directory: ./${{ env.NAME }}
+        working-directory: ./${{ env.CONTAINER-NAME }}
 
       - name: Login to Docker Hub
         uses: docker/login-action@v1
