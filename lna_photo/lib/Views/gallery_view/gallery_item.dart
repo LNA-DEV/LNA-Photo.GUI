@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import '../../Models/photo.dart';
 import '../image_detail_view/image_detail_view.dart';
@@ -29,8 +30,8 @@ class _GalleryItemState extends State<GalleryItem> {
             borderRadius: BorderRadius.circular(8.0),
             child: Hero(
               tag: "image-detail-${widget.photo.name}",
-              child: Image.network(
-                widget.photo.url,
+              child: CachedNetworkImage(
+                imageUrl: widget.photo.url,
                 fit: BoxFit.cover,
               ),
             )),
