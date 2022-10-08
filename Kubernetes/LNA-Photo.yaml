@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: lna-photo-gui
-          image: lnadev/lna_photo:43
+          image: lnadev/lna_photo:44
           imagePullPolicy: Always
           resources:
             limits:
